@@ -21,6 +21,9 @@ defmodule EctoContext.Context do
 
   iex> new(except: [:list, :get]).actions
   [:create, :update, :delete, :change]
+
+  iex> new(only: [:not_there])
+  ** (ArgumentError) invalid :only action [:not_there]. Use: [:list, :get, :create, :update, :delete, :change].
   """
   def new(opts \\ []) when is_list(opts) do
     %EctoContext.Context{
@@ -48,16 +51,10 @@ defmodule EctoContext.Context do
   end
 
   defp validate_actions(type, actions) do
-    unless actions -- @actions == [],
-      do:
-        raise(ArgumentError, """
-        invalid :#{type} action(s) passed to resources.
-
-        supported actions: #{inspect(@actions)}
-
-        got: #{inspect(@actions)}
-        """)
-
-    @actions
+    if actions -- @actions == [] do
+      @actions
+    else
+      raise(ArgumentError, "invalid :#{type} action #{inspect(actions)}. Use: #{inspect(@actions)}.")
+    end
   end
 end
