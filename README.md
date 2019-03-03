@@ -1,4 +1,4 @@
-# Ecto Context
+# Ecto Context [![Build Status](https://travis-ci.org/sbrink/ecto_context.svg?branch=master)](https://travis-ci.org/sbrink/ecto_context)
 
 Non-magic context generation for ecto
 
