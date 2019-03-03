@@ -1,0 +1,22 @@
+language: elixir
+
+cache:
+  directories:
+    - $HOME/.mix
+    - _build
+    - deps
+
+elixir:
+  - 1.8.0
+
+otp_release:
+  - 21.1
+
+env:
+  - MIX_ENV=test
+
+script:
+  - mix compile --force --warnings-as-errors
+  - mix format --check-formatted
+  - mix do ecto.create, ecto.migrate
+  - mix test
