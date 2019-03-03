@@ -2,7 +2,11 @@ defmodule EctoContextTest do
   use ExUnit.Case
   doctest EctoContext
 
-  test "greets the world" do
-    # assert EctoContext.hello() == :world
+  defmodule Posts do
+    use EctoContext, module: EctoContext.Test.Posts.Post
+  end
+
+  test "generation of functions" do
+    assert EctoContextTest.Posts.__info__(:functions) == [list: 0]
   end
 end
