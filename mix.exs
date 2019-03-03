@@ -55,6 +55,7 @@ defmodule EctoContext.MixProject do
     [
       cov: ["coveralls.html"],
       credo: ["credo --strict"],
+      release: ["hex.publish package"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
     ]
   end
