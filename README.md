@@ -1,4 +1,9 @@
-# Ecto Context [![Build Status](https://travis-ci.org/sbrink/ecto_context.svg?branch=master)](https://travis-ci.org/sbrink/ecto_context)
+# Ecto Context
+
+[![Build Status](https://travis-ci.org/sbrink/ecto_context.svg?branch=master)](https://travis-ci.org/sbrink/ecto_context)
+[![Coverage Status](https://coveralls.io/repos/github/sbrink/ecto_context/badge.svg?branch=master)](https://coveralls.io/github/sbrink/ecto_context?branch=master)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/sbrink/ecto_context/blob/master/LICENSE)
+[![Hex.pm](https://img.shields.io/hexpm/v/ecto_context.svg)](https://hexdocs.pm/ecto_context)
 
 Non-magic context generation for ecto
 
@@ -45,3 +50,6 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/ecto_context](https://hexdocs.pm/ecto_context).
 
+## License
+
+MIT © Sascha Brink
