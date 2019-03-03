@@ -1,0 +1,3 @@
+def <%= @schema.singular %>_blub do
+  1 + 1
+end
