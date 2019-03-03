@@ -11,16 +11,43 @@ defmodule EctoContext.Context do
   Fills the struct from external options.
   E.g.: `use EctoContext, module: EctoContext.Test.Posts.Post, repo: ...`
 
-  iex> new(module: EctoContext.Test.Posts.Post, default_param: :slug)
+  iex> new()
   %EctoContext.Context{
+    actions: [:list, :get, :create, :update, :delete, :change]
   }
+
+  iex> new(only: [:list, :get]).actions
+  [:list, :get]
+
+  iex> new(except: [:list, :get]).actions
+  [:create, :update, :delete, :change]
   """
-  def new(opts) when is_list(opts) do
-    %EctoContext.Context{}
+  def new(opts \\ []) when is_list(opts) do
+    %EctoContext.Context{
+      actions: extract_actions(opts)
+    }
   end
 
   # Private functions
-  def validate_actions(type, actions) do
+  defp extract_actions(opts) do
+    only = Keyword.get(opts, :only)
+    except = Keyword.get(opts, :except)
+
+    cond do
+      only ->
+        supported_actions = validate_actions(:only, only)
+        supported_actions -- supported_actions -- only
+
+      except ->
+        supported_actions = validate_actions(:except, except)
+        supported_actions -- except
+
+      true ->
+        @actions
+    end
+  end
+
+  defp validate_actions(type, actions) do
     unless actions -- @actions == [],
       do:
         raise(ArgumentError, """
