@@ -18,5 +18,6 @@ env:
 script:
   - mix compile --force --warnings-as-errors
   - mix format --check-formatted
+  - mix credo
   - mix do ecto.create, ecto.migrate
   - mix coveralls.travis

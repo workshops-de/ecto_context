@@ -16,7 +16,8 @@ defmodule EctoContext do
   end
 
   defmacro context_actions(opts) do
-    EctoContext.TemplateBuilder.run(opts)
+    opts
+    |> EctoContext.TemplateBuilder.run()
     |> Code.string_to_quoted()
   end
 end
