@@ -12,6 +12,7 @@ defmodule EctoContext.MixProject do
       aliases: aliases(),
       package: package(),
       test_coverage: [tool: ExCoveralls],
+      source_url: "https://github.com/sbrink/ecto_context",
       preferred_cli_env: [
         cov: :test,
         credo: :test,
@@ -36,7 +37,7 @@ defmodule EctoContext.MixProject do
       description: "Non-magic context generation for ecto",
       maintainers: ["Sascha Brink"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "ecto_context"}
+      links: %{"GitHub" => "https://github.com/sbrink/ecto_context"}
     ]
   end
 
