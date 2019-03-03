@@ -1,0 +1,3 @@
+def <%= @schema.singular %>_list do
+  1 + 1
+end
