@@ -16,9 +16,7 @@ defmodule EctoContext.Context do
   }
   """
   def new(opts) when is_list(opts) do
-
-    %EctoContext.Context{
-    }
+    %EctoContext.Context{}
   end
 
   # Private functions

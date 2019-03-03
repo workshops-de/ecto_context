@@ -9,7 +9,7 @@ defmodule EctoContext.Schema do
             plural: nil,
             human_singular: nil,
             human_plural: nil,
-            default_param: :nil,
+            default_param: nil,
             actions: [],
             assocs: []
 
@@ -68,11 +68,11 @@ defmodule EctoContext.Schema do
 
   # Private functions
   defp get_assocs(module) do
-   module.__schema__(:associations)
-   |> Enum.map(fn association_atom -> module.__schema__(:association, association_atom) end)
+    module.__schema__(:associations)
+    |> Enum.map(fn association_atom -> module.__schema__(:association, association_atom) end)
   end
 
   defp humanize(bin) when is_binary(bin) do
-    bin |> String.replace("_", " ") |> String.capitalize
+    bin |> String.replace("_", " ") |> String.capitalize()
   end
 end
