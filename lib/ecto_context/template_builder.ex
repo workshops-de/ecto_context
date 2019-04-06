@@ -11,7 +11,7 @@ defmodule EctoContext.TemplateBuilder do
       schema: EctoContext.Schema.new(opts)
     }
 
-    EEx.eval_file(get_template(opts), assigns: assigns)
+    EEx.eval_file(get_template(opts), [assigns: assigns], trim: false)
   end
 
   defp get_template(opts) do

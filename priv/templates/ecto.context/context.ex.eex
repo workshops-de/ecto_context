@@ -1,4 +1,4 @@
-  @doc """
+<%= if :list in @context.actions do %>  @doc """
   Returns the list of <%= @schema.plural %>.
   """
   def list(opts \\ []) do
@@ -6,9 +6,9 @@
     |> Ecto.Query.from(order_by: ^opts[:order_by], limit: ^opts[:limit])
     |> <%= @schema.repo %>.all()
     |> <%= @schema.repo %>.preload(opts[:preload] || [])
-  end
+  end<% end %>
 
-  <%= for assoc <- @schema.assocs do %>@doc """
+<%= for assoc <- @schema.assocs do %>  @doc """
   Returns the list of <%= @schema.plural %> for <%= assoc.field %>.
   """
   def list_for_<%= assoc.field %>(%{id: <%= assoc.field %>_id}, opts \\ []) do
