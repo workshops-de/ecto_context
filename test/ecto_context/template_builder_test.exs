@@ -5,8 +5,8 @@ defmodule EctoContext.TemplateBuilderTest do
 
   describe "#run" do
     test "generates a template" do
-      result = TemplateBuilder.run(module: EctoContext.Test.Posts.Post, template: "test/support/test_template.ex.eex")
-      assert result == "def post_list do\n  1 + 1\nend\n"
+      result = TemplateBuilder.run(module: EctoContext.Test.Posts.Post, template: "priv/templates/ecto.context/context.ex.eex")
+      assert result == File.read!("test/ecto_context/post_context_result.ex.eex")
     end
   end
 end
