@@ -1,3 +1,84 @@
-def list do
-  1 + 1
-end
+  @doc """
+  Returns the list of <%= @schema.plural %>.
+  """
+  def list(opts \\ []) do
+    <%= @schema.module %>
+    |> Ecto.Query.from(order_by: ^opts[:order_by], limit: ^opts[:limit])
+    |> <%= @schema.repo %>.all()
+    |> <%= @schema.repo %>.preload(opts[:preload] || [])
+  end
+
+  <%= for assoc <- @schema.assocs do %>@doc """
+  Returns the list of <%= @schema.plural %> for <%= assoc.field %>.
+  """
+  def list_for_<%= assoc.field %>(%{id: <%= assoc.field %>_id}, opts \\ []) do
+    <%= @schema.module %>
+    |> Ecto.Query.where(<%= assoc.field %>_id: ^<%= assoc.field %>_id)
+    |> Ecto.Query.from(order_by: ^opts[:order_by], limit: ^opts[:limit])
+    |> <%= @schema.repo %>.all()
+    |> <%= @schema.repo %>.preload(opts[:preload] || [])
+  end
+
+<% end %>  @doc """
+  Gets a single <%= @schema.singular %> with exception.
+  """
+  def get!(id, opts \\ []) do
+    id_attr = opts[:by] || :<%= @schema.default_param %>
+
+    <%= @schema.module %>
+    |> <%= @schema.repo %>.get_by!([{id_attr, id}])
+    |> <%= @schema.repo %>.preload(opts[:preload] || [])
+  end
+
+  @doc """
+  Gets a single <%= @schema.singular %>.
+  """
+  def get(id, opts \\ []) do
+    id_attr = opts[:by] || :<%= @schema.default_param %>
+
+    <%= @schema.module %>
+    |> <%= @schema.repo %>.get_by([{id_attr, id}])
+    |> <%= @schema.repo %>.preload(opts[:preload] || [])
+  end
+
+  @doc """
+  Creates a <%= @schema.singular %>.
+  """
+  def create(attrs \\ %{}, changeset_name \\ :create) do
+    %<%= @schema.module %>{}
+    |> <%= @schema.module %>.changeset(attrs, changeset_name)
+    |> <%= @schema.repo %>.insert()
+  end
+
+  @doc """
+  Updates a <%= @schema.singular %>.
+  """
+  def update(%<%= @schema.module %>{} = <%= @schema.singular %>, attrs, changeset_name \\ :update) do
+    <%= @schema.singular %>
+    |> <%= @schema.module %>.changeset(attrs, changeset_name)
+    |> <%= @schema.repo %>.update()
+  end
+
+  @doc """
+  Deletes a <%= @schema.singular %>.
+  """
+  def delete(%<%= @schema.module %>{} = <%= @schema.singular %>) do
+    <%= @schema.repo %>.delete(<%= @schema.singular %>)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking <%= @schema.singular %> changes.
+  """
+  def change(<%= @schema.singular %>_opts \\ %{}, changeset_name) when is_map(<%= @schema.singular %>_opts) do
+    %<%= @schema.module %>{}
+    |> Map.merge(<%= @schema.singular %>_opts)
+    |> <%= @schema.module %>.changeset(%{}, changeset_name)
+  end
+
+  @doc """
+  Returns the <%= @schema.singular %> schema.
+  """
+  def schema(attrs \\ %{}) do
+    %<%= @schema.module %>{}
+    |> Map.merge(attrs)
+  end

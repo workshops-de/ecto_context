@@ -1,3 +1,84 @@
-def list do
-  1 + 1
-end
+  @doc """
+  Returns the list of posts.
+  """
+  def list(opts \\ []) do
+    Elixir.EctoContext.Test.Posts.Post
+    |> Ecto.Query.from(order_by: ^opts[:order_by], limit: ^opts[:limit])
+    |> Elixir.EctoContext.Test.Repo.all()
+    |> Elixir.EctoContext.Test.Repo.preload(opts[:preload] || [])
+  end
+
+  @doc """
+  Returns the list of posts for user.
+  """
+  def list_for_user(%{id: user_id}, opts \\ []) do
+    Elixir.EctoContext.Test.Posts.Post
+    |> Ecto.Query.where(user_id: ^user_id)
+    |> Ecto.Query.from(order_by: ^opts[:order_by], limit: ^opts[:limit])
+    |> Elixir.EctoContext.Test.Repo.all()
+    |> Elixir.EctoContext.Test.Repo.preload(opts[:preload] || [])
+  end
+
+  @doc """
+  Gets a single post with exception.
+  """
+  def get!(id, opts \\ []) do
+    id_attr = opts[:by] || :slug
+
+    Elixir.EctoContext.Test.Posts.Post
+    |> Elixir.EctoContext.Test.Repo.get_by!([{id_attr, id}])
+    |> Elixir.EctoContext.Test.Repo.preload(opts[:preload] || [])
+  end
+
+  @doc """
+  Gets a single post.
+  """
+  def get(id, opts \\ []) do
+    id_attr = opts[:by] || :slug
+
+    Elixir.EctoContext.Test.Posts.Post
+    |> Elixir.EctoContext.Test.Repo.get_by([{id_attr, id}])
+    |> Elixir.EctoContext.Test.Repo.preload(opts[:preload] || [])
+  end
+
+  @doc """
+  Creates a post.
+  """
+  def create(attrs \\ %{}, changeset_name \\ :create) do
+    %Elixir.EctoContext.Test.Posts.Post{}
+    |> Elixir.EctoContext.Test.Posts.Post.changeset(attrs, changeset_name)
+    |> Elixir.EctoContext.Test.Repo.insert()
+  end
+
+  @doc """
+  Updates a post.
+  """
+  def update(%Elixir.EctoContext.Test.Posts.Post{} = post, attrs, changeset_name \\ :update) do
+    post
+    |> Elixir.EctoContext.Test.Posts.Post.changeset(attrs, changeset_name)
+    |> Elixir.EctoContext.Test.Repo.update()
+  end
+
+  @doc """
+  Deletes a post.
+  """
+  def delete(%Elixir.EctoContext.Test.Posts.Post{} = post) do
+    Elixir.EctoContext.Test.Repo.delete(post)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking post changes.
+  """
+  def change(post_opts \\ %{}, changeset_name) when is_map(post_opts) do
+    %Elixir.EctoContext.Test.Posts.Post{}
+    |> Map.merge(post_opts)
+    |> Elixir.EctoContext.Test.Posts.Post.changeset(%{}, changeset_name)
+  end
+
+  @doc """
+  Returns the post schema.
+  """
+  def schema(attrs \\ %{}) do
+    %Elixir.EctoContext.Test.Posts.Post{}
+    |> Map.merge(attrs)
+  end
