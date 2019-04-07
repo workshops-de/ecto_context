@@ -5,7 +5,7 @@ defmodule EctoContext.Context do
   """
   defstruct actions: []
 
-  @actions [:list, :get, :create, :update, :delete, :change]
+  @actions [:list, :get, :create, :update, :delete, :change, :schema]
 
   @doc """
   Fills the struct from external options.
@@ -13,17 +13,17 @@ defmodule EctoContext.Context do
 
   iex> new()
   %EctoContext.Context{
-    actions: [:list, :get, :create, :update, :delete, :change]
+    actions: [:list, :get, :create, :update, :delete, :change, :schema]
   }
 
   iex> new(only: [:list, :get]).actions
   [:list, :get]
 
-  iex> new(except: [:list, :get]).actions
+  iex> new(except: [:list, :get, :schema]).actions
   [:create, :update, :delete, :change]
 
   iex> new(only: [:not_there])
-  ** (ArgumentError) invalid :only action [:not_there]. Use: [:list, :get, :create, :update, :delete, :change].
+  ** (ArgumentError) invalid :only action [:not_there]. Use: [:list, :get, :create, :update, :delete, :change, :schema].
   """
   def new(opts \\ []) when is_list(opts) do
     %EctoContext.Context{
