@@ -7,7 +7,7 @@ defmodule EctoContext do
     opts = opts |> Keyword.put(:context_module, __CALLER__)
 
     quote do
-      import Ecto.Query, warn: false
+      import Ecto.Query, only: [from: 2], warn: false
       require EctoContext
       import EctoContext
 
