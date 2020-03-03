@@ -11,21 +11,15 @@ defmodule EctoContext.TemplateBuilder do
       schema: EctoContext.Schema.new(opts)
     }
 
-    EEx.eval_string(get_template(opts, assigns.context.actions), [assigns: assigns], trim: false)
+    EEx.eval_string(get_template(assigns.context.actions), [assigns: assigns], trim: false)
   end
 
   # Private functions
-  defp get_template(opts, actions) do
-
+  defp get_template(actions) do
     actions
     |> Enum.map(&get_template_file/1)
     |> Enum.map(&File.read!/1)
-    |> IO.inspect
     |> Enum.join("\n")
-
-    #get_template_folder()
-    #|> Path.join("context.ex.eex")
-    #|> File.read!()
   end
 
   def get_template_file(action) do
