@@ -7,10 +7,10 @@ cache:
     - deps
 
 elixir:
-  - 1.10.0
+  - 1.10.2
 
 otp_release:
-  - 22
+  - 22.2
 
 env:
   - MIX_ENV=test
