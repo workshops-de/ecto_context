@@ -1,0 +1,8 @@
+  @doc """
+  Updates a <%= @schema.singular %>.
+  """
+  def update(%<%= @schema.module %>{} = <%= @schema.singular %>, attrs, changeset_name \\ :update) do
+    <%= @schema.singular %>
+    |> <%= @schema.module %>.changeset(attrs, changeset_name)
+    |> <%= @schema.repo %>.update()
+  end

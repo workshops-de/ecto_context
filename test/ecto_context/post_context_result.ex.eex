@@ -19,6 +19,7 @@
     |> Elixir.EctoContext.Test.Repo.preload(opts[:preload] || [])
   end
 
+
   @doc """
   Gets a single post with exception.
   """

@@ -1,0 +1,6 @@
+  @doc """
+  Deletes a <%= @schema.singular %>.
+  """
+  def delete(%<%= @schema.module %>{} = <%= @schema.singular %>) do
+    <%= @schema.repo %>.delete(<%= @schema.singular %>)
+  end

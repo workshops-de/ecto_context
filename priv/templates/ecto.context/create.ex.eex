@@ -1,0 +1,8 @@
+  @doc """
+  Creates a <%= @schema.singular %>.
+  """
+  def create(attrs \\ %{}, changeset_name \\ :create) do
+    %<%= @schema.module %>{}
+    |> <%= @schema.module %>.changeset(attrs, changeset_name)
+    |> <%= @schema.repo %>.insert()
+  end

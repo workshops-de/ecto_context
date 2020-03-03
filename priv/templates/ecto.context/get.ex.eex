@@ -1,0 +1,21 @@
+  @doc """
+  Gets a single <%= @schema.singular %> with exception.
+  """
+  def get!(id, opts \\ []) do
+    id_attr = opts[:by] || :<%= @schema.default_param %>
+
+    <%= @schema.module %>
+    |> <%= @schema.repo %>.get_by!([{id_attr, id}])
+    |> <%= @schema.repo %>.preload(opts[:preload] || [])
+  end
+
+  @doc """
+  Gets a single <%= @schema.singular %>.
+  """
+  def get(id, opts \\ []) do
+    id_attr = opts[:by] || :<%= @schema.default_param %>
+
+    <%= @schema.module %>
+    |> <%= @schema.repo %>.get_by([{id_attr, id}])
+    |> <%= @schema.repo %>.preload(opts[:preload] || [])
+  end

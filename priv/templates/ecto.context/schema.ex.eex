@@ -1,0 +1,7 @@
+  @doc """
+  Returns the <%= @schema.singular %> schema.
+  """
+  def schema(attrs \\ %{}) do
+    %<%= @schema.module %>{}
+    |> Map.merge(attrs)
+  end
