@@ -14,6 +14,7 @@ defmodule EctoContext.TemplateBuilder do
     EEx.eval_file(get_template(opts), [assigns: assigns], trim: false)
   end
 
+  # Private functions
   defp get_template(opts) do
     opts[:template] ||
       Application.get_env(:ecto_context, :template) ||
