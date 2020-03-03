@@ -1,6 +1,6 @@
 # Ecto Context
 
-[![Build Status](https://travis-ci.com/sbrink/ecto_context.svg?branch=master)](https://travis-ci.com/sbrink/ecto_context)
+![CI](https://github.com/sbrink/ecto_context/workflows/CI/badge.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/sbrink/ecto_context/badge.svg?branch=master)](https://coveralls.io/github/sbrink/ecto_context?branch=master)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/sbrink/ecto_context/blob/master/LICENSE)
 [![Hex.pm](https://img.shields.io/hexpm/v/ecto_context.svg)](https://hexdocs.pm/ecto_context)
