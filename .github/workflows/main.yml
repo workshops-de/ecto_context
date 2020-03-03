@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-  services:
+    services:
       db:
         image: postgres:11
         ports: ['5432:5432']
