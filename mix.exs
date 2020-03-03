@@ -5,7 +5,7 @@ defmodule EctoContext.MixProject do
     [
       app: :ecto_context,
       version: "0.1.0",
-      elixir: "~> 1.7",
+      elixir: "~> 1.10",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
