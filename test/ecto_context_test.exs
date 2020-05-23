@@ -6,6 +6,10 @@ defmodule EctoContextTest do
     use EctoContext, module: EctoContext.Test.Posts.Post
   end
 
+  defmodule Users do
+    use EctoContext, module: EctoContext.Test.Users.User
+  end
+
   test "generation of functions" do
     assert EctoContextTest.Posts.__info__(:functions) == [
              change: 1,
