@@ -6,3 +6,13 @@
     |> <%= @schema.module %>.changeset(attrs, changeset_name)
     |> <%= @schema.repo %>.insert()
   end
+<%= for assoc <- @schema.assocs do %>
+  @doc """
+  Creates a <%= @schema.singular %> for <%= assoc.field %>.
+  """
+  def create_for_<%= assoc.field %>(%{id: <%= assoc.field %>_id}, attrs \\ %{}, changeset_name \\ :create) do
+    %<%= @schema.module %>{<%= assoc.field %>_id: <%= assoc.field %>_id}
+    |> <%= @schema.module %>.changeset(attrs, changeset_name)
+    |> <%= @schema.repo %>.insert()
+  end
+<% end %>

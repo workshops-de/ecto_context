@@ -52,6 +52,16 @@
   end
 
   @doc """
+  Creates a post for user.
+  """
+  def create_for_user(%{id: user_id}, attrs \\ %{}, changeset_name \\ :create) do
+    %Elixir.EctoContext.Test.Posts.Post{user_id: user_id}
+    |> Elixir.EctoContext.Test.Posts.Post.changeset(attrs, changeset_name)
+    |> Elixir.EctoContext.Test.Repo.insert()
+  end
+
+
+  @doc """
   Updates a post.
   """
   def update(%Elixir.EctoContext.Test.Posts.Post{} = post, attrs, changeset_name \\ :update) do
