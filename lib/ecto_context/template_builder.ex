@@ -28,6 +28,6 @@ defmodule EctoContext.TemplateBuilder do
   end
 
   def get_template_folder do
-    "priv/templates/ecto.context"
+    "#{__DIR__}/../../priv/templates/ecto.context"
   end
 end
