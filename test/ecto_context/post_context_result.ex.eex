@@ -80,10 +80,15 @@
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking post changes.
   """
-  def change(post_opts \\ %{}, changeset_name) when is_map(post_opts) do
+  def change(post_opts, changeset_name) when is_map(post_opts) do
     %Elixir.EctoContext.Test.Posts.Post{}
     |> Map.merge(post_opts)
     |> Elixir.EctoContext.Test.Posts.Post.changeset(%{}, changeset_name)
+  end
+
+  def change(%Elixir.EctoContext.Test.Posts.Post{} = post, post_params, changeset_name) when is_map(post_params) do
+    post
+    |> Elixir.EctoContext.Test.Posts.Post.changeset(post_params, changeset_name)
   end
 
   @doc """

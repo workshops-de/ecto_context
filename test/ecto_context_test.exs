@@ -12,8 +12,8 @@ defmodule EctoContextTest do
 
   test "generation of functions" do
     assert EctoContextTest.Posts.__info__(:functions) == [
-             change: 1,
              change: 2,
+             change: 3,
              create: 0,
              create: 1,
              create: 2,

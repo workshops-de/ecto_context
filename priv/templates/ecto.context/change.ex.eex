@@ -1,8 +1,13 @@
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking <%= @schema.singular %> changes.
   """
-  def change(<%= @schema.singular %>_opts \\ %{}, changeset_name) when is_map(<%= @schema.singular %>_opts) do
+  def change(<%= @schema.singular %>_opts, changeset_name) when is_map(<%= @schema.singular %>_opts) do
     %<%= @schema.module %>{}
     |> Map.merge(<%= @schema.singular %>_opts)
     |> <%= @schema.module %>.changeset(%{}, changeset_name)
+  end
+
+  def change(%<%= @schema.module %>{} = <%= @schema.singular %>, <%= @schema.singular %>_params, changeset_name) when is_map(<%= @schema.singular %>_params) do
+    <%= @schema.singular %>
+    |> <%= @schema.module %>.changeset(<%= @schema.singular %>_params, changeset_name)
   end
