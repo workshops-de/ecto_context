@@ -48,7 +48,13 @@ defmodule EctoContext.Schema do
   """
   def new(opts) when is_list(opts) do
     schema_module = opts[:module] || raise "You must specify a module"
-    module = Macro.expand(schema_module, opts[:context_module])
+
+    # Module should already be expanded by __using__ macro
+    module = case schema_module do
+      module when is_atom(module) -> module
+      _ -> raise "Invalid module format. Module should be an atom at this point."
+    end
+
     repo = opts[:repo] || Application.get_env(:ecto_context, :repo) || raise "You must specify a repo"
     singular = module |> Module.split() |> List.last() |> Macro.underscore()
     plural = opts[:plural] || module.__schema__(:source)
