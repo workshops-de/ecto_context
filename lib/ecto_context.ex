@@ -4,7 +4,7 @@ defmodule EctoContext do
   """
 
   defmacro __using__(opts) do
-    opts = opts |> Keyword.put(:context_module, Macro.escape(__CALLER__))
+    opts = opts |> Keyword.put(:context_module, __CALLER__)
 
     quote do
       require Ecto.Query
